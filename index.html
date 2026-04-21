@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Niket Chandrashekar — Product & Programme Leader</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0D0F14;
+    --paper: #F7F4EE;
+    --navy: #12243A;
+    --blue: #1A6FA8;
+    --blue-light: #3A9BD5;
+    --gold: #C9973A;
+    --gold-light: #E8B85A;
+    --red: #C0392B;
+    --muted: #6B7280;
+    --rule: rgba(18,36,58,0.12);
+    --card-bg: #FFFFFF;
+    --section-bg: #F0EDE6;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(13,15,20,0.96);
+    backdrop-filter: blur(12px);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px;
+    height: 60px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .nav-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; font-weight: 700;
+    color: #fff; letter-spacing: 0.02em;
+  }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; font-weight: 500;
+    color: rgba(255,255,255,0.55);
+    text-decoration: none; letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex; flex-direction: column;
+    justify-content: center;
+    padding: 100px 80px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 80% 50%, rgba(26,111,168,0.18) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 10% 80%, rgba(201,151,58,0.10) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; font-weight: 500;
+    color: var(--gold);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.2s ease forwards;
+  }
+
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px, 8vw, 96px);
+    font-weight: 900;
+    line-height: 0.95;
+    color: #fff;
+    letter-spacing: -0.02em;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.35s ease forwards;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .hero-tagline {
+    font-size: 18px; font-weight: 300;
+    color: rgba(255,255,255,0.65);
+    max-width: 560px; line-height: 1.7;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.5s ease forwards;
+  }
+
+  .hero-stats {
+    display: flex; gap: 48px; flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.65s ease forwards;
+  }
+  .stat-item { display: flex; flex-direction: column; }
+  .stat-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px; font-weight: 700;
+    color: var(--gold-light);
+    line-height: 1;
+  }
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; font-weight: 500;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+
+  .hero-cta {
+    margin-top: 52px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s ease forwards;
+  }
+  .cta-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'DM Mono', monospace;
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 14px 28px;
+    border: none; cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .cta-btn:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  .scroll-indicator {
+    position: absolute; bottom: 32px; left: 80px;
+    display: flex; align-items: center; gap: 12px;
+    opacity: 0; animation: fadeUp 1s 1.2s ease forwards;
+  }
+  .scroll-line {
+    width: 40px; height: 1px;
+    background: rgba(255,255,255,0.25);
+  }
+  .scroll-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; color: rgba(255,255,255,0.35);
+    letter-spacing: 0.12em; text-transform: uppercase;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 100px 80px; }
+  section:nth-child(even) { background: var(--section-bg); }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; font-weight: 500;
+    color: var(--blue);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1; max-width: 60px;
+    height: 1px; background: var(--blue);
+    opacity: 0.4;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--navy);
+    margin-bottom: 60px;
+    max-width: 640px;
+  }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 0; top: 12px; bottom: 12px;
+    width: 2px; background: linear-gradient(to bottom, var(--blue), var(--gold));
+    opacity: 0.3;
+  }
+
+  .timeline-item {
+    padding-left: 40px;
+    margin-bottom: 60px;
+    position: relative;
+    opacity: 0;
+    transform: translateX(-16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .timeline-item.visible { opacity: 1; transform: translateX(0); }
+
+  .timeline-dot {
+    position: absolute; left: -6px; top: 10px;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--card-bg);
+    border: 2px solid var(--blue);
+  }
+
+  .timeline-period {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; color: var(--muted);
+    letter-spacing: 0.08em; margin-bottom: 8px;
+  }
+  .timeline-role { font-size: 20px; font-weight: 500; color: var(--navy); margin-bottom: 4px; }
+  .timeline-company { font-size: 15px; color: var(--blue); font-weight: 400; margin-bottom: 12px; }
+  .timeline-desc { font-size: 15px; color: var(--muted); line-height: 1.65; max-width: 680px; }
+
+  .timeline-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; font-weight: 500;
+    color: var(--blue); letter-spacing: 0.06em;
+    background: rgba(26,111,168,0.08);
+    border: 1px solid rgba(26,111,168,0.2);
+    padding: 4px 10px;
+  }
+
+  /* ── PRODUCT LAUNCHES ── */
+  .product-group {
+    margin-bottom: 72px;
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .product-group.visible { opacity: 1; transform: translateY(0); }
+
+  .product-group-header {
+    display: flex; align-items: center; gap: 20px;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .product-group-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 5px 12px; white-space: nowrap;
+  }
+  .badge-first { background: rgba(201,151,58,0.12); color: var(--gold); border: 1px solid rgba(201,151,58,0.3); }
+  .badge-impact { background: rgba(26,111,168,0.10); color: var(--blue); border: 1px solid rgba(26,111,168,0.25); }
+  .badge-award { background: rgba(192,57,43,0.08); color: var(--red); border: 1px solid rgba(192,57,43,0.2); }
+
+  .product-group-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px; font-weight: 700;
+    color: var(--navy); line-height: 1.2;
+  }
+  .product-group-company {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; color: var(--blue);
+    letter-spacing: 0.06em; margin-left: auto;
+    white-space: nowrap;
+  }
+
+  .product-group-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .product-group-body.wide { grid-template-columns: 1fr; }
+
+  .product-desc-col {}
+  .product-desc {
+    font-size: 15px; color: var(--muted);
+    line-height: 1.7; margin-bottom: 20px;
+  }
+  .product-metrics { display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 20px; }
+  .metric-pill {
+    display: flex; flex-direction: column;
+    background: var(--section-bg);
+    padding: 12px 18px;
+    min-width: 110px;
+  }
+  .metric-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px; font-weight: 700;
+    color: var(--navy); line-height: 1;
+  }
+  .metric-desc { font-size: 11px; color: var(--muted); margin-top: 4px; line-height: 1.4; }
+
+  /* ── VIDEO GRID ── */
+  .video-grid {
+    display: grid;
+    gap: 10px;
+  }
+  .video-grid.cols-1 { grid-template-columns: 1fr; }
+  .video-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+  .video-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+  .video-thumb {
+    position: relative; cursor: pointer;
+    background: #000; overflow: hidden;
+    aspect-ratio: 16/9;
+    group: true;
+  }
+  .video-thumb img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease, opacity 0.3s ease;
+    opacity: 0.85;
+  }
+  .video-thumb:hover img { transform: scale(1.04); opacity: 0.65; }
+
+  .video-play-btn {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 8px;
+  }
+  .play-circle {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.92);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.2s, background 0.2s;
+  }
+  .play-circle svg { margin-left: 3px; }
+  .video-thumb:hover .play-circle { transform: scale(1.12); background: var(--gold); }
+  .video-thumb:hover .play-circle svg path { fill: var(--navy); }
+
+  .video-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; font-weight: 500;
+    color: rgba(255,255,255,0.9);
+    letter-spacing: 0.08em; text-align: center;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+    padding: 0 8px;
+  }
+
+  .video-coming-soon {
+    aspect-ratio: 16/9;
+    background: var(--section-bg);
+    border: 2px dashed rgba(18,36,58,0.15);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 8px;
+  }
+  .video-coming-soon span:first-child { font-size: 28px; }
+  .video-coming-soon span:last-child {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; color: var(--muted);
+    letter-spacing: 0.1em; text-transform: uppercase;
+  }
+
+  /* ── LIGHTBOX ── */
+  .lightbox {
+    display: none; position: fixed; inset: 0; z-index: 999;
+    background: rgba(0,0,0,0.92);
+    align-items: center; justify-content: center;
+    padding: 40px;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox-inner {
+    position: relative;
+    width: 100%; max-width: 900px;
+  }
+  .lightbox-close {
+    position: absolute; top: -44px; right: 0;
+    background: none; border: none; cursor: pointer;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; color: rgba(255,255,255,0.6);
+    letter-spacing: 0.1em; display: flex; align-items: center; gap: 8px;
+    transition: color 0.2s;
+  }
+  .lightbox-close:hover { color: var(--gold-light); }
+  .lightbox-title {
+    position: absolute; bottom: -36px; left: 0;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; color: rgba(255,255,255,0.5);
+    letter-spacing: 0.06em;
+  }
+  .lightbox iframe {
+    width: 100%; aspect-ratio: 16/9;
+    border: none; display: block;
+  }
+
+  /* ── EXPERTISE AREAS ── */
+  .expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+  }
+
+  .expertise-card {
+    padding: 32px;
+    border: 1px solid var(--rule);
+    background: var(--card-bg);
+    opacity: 0; transform: translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.25s;
+  }
+  .expertise-card.visible { opacity: 1; transform: translateY(0); }
+  .expertise-card:hover { border-color: var(--blue); }
+
+  .expertise-icon {
+    font-size: 28px; margin-bottom: 16px;
+    display: block;
+  }
+  .expertise-name {
+    font-size: 16px; font-weight: 500;
+    color: var(--navy); margin-bottom: 10px;
+  }
+  .expertise-desc {
+    font-size: 13px; color: var(--muted); line-height: 1.6;
+  }
+
+  /* ── CERTIFICATIONS & EDUCATION ── */
+  .cred-list { display: flex; flex-direction: column; gap: 0; }
+  .cred-item {
+    display: flex; align-items: flex-start; gap: 24px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--rule);
+    opacity: 0; transform: translateX(-12px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .cred-item.visible { opacity: 1; transform: translateX(0); }
+  .cred-year {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; color: var(--muted);
+    letter-spacing: 0.06em; min-width: 80px;
+    padding-top: 3px;
+  }
+  .cred-name { font-size: 16px; font-weight: 500; color: var(--navy); margin-bottom: 4px; }
+  .cred-org { font-size: 13px; color: var(--blue); }
+
+  /* ── CONTACT ── */
+  .contact-section {
+    background: var(--navy) !important;
+    text-align: center;
+  }
+  .contact-section .section-label { justify-content: center; color: var(--gold); }
+  .contact-section .section-label::after { display: none; }
+  .contact-section .section-title { color: #fff; margin: 0 auto 40px; }
+  .contact-links {
+    display: flex; justify-content: center;
+    flex-wrap: wrap; gap: 20px;
+  }
+  .contact-chip {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.8);
+    font-family: 'DM Mono', monospace;
+    font-size: 12px; letter-spacing: 0.06em;
+    padding: 14px 24px;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .contact-chip:hover {
+    background: rgba(201,151,58,0.15);
+    border-color: var(--gold);
+    color: var(--gold-light);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #080A0E;
+    padding: 32px 80px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px; color: rgba(255,255,255,0.5);
+  }
+  .footer-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; color: rgba(255,255,255,0.25);
+    letter-spacing: 0.08em;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 0 24px; }
+    .nav-links { gap: 20px; }
+    .hero { padding: 100px 24px 60px; }
+    .hero-stats { gap: 28px; }
+    section { padding: 72px 24px; }
+    .launches-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 12px; text-align: center; padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-name">Niket Chandrashekar</div>
+  <div class="nav-links">
+    <a href="#work">Work</a>
+    <a href="#launches">Launches</a>
+    <a href="#expertise">Expertise</a>
+    <a href="#credentials">Credentials</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Product &amp; Programme Leader</div>
+  <h1 class="hero-name">Niket<br><em>Chandrashekar</em></h1>
+  <p class="hero-tagline">12+ years building products and programmes that transform how businesses operate — from launching India's first RFID self-checkout to driving $2.5M impact in SaaS.</p>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <span class="stat-value">12+</span>
+      <span class="stat-label">Years Experience</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-value">₹16Cr</span>
+      <span class="stat-label">Cost Savings</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-value">$2.5M</span>
+      <span class="stat-label">Revenue Impact</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-value">5M+</span>
+      <span class="stat-label">Users Reached</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-value">95+</span>
+      <span class="stat-label">Stores Scaled</span>
+    </div>
+  </div>
+  <div class="hero-cta">
+    <a href="#contact" class="cta-btn">
+      <span>Get in Touch</span>
+      <span>→</span>
+    </a>
+  </div>
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    <span class="scroll-text">Scroll to explore</span>
+  </div>
+</div>
+
+<!-- WORK HISTORY -->
+<section id="work">
+  <div class="section-label">Experience</div>
+  <h2 class="section-title">A career built on shipping things that matter.</h2>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-period">Sep 2024 – Present</div>
+      <div class="timeline-role">Program Manager – Digital Solutions, South Asia</div>
+      <div class="timeline-company">Avery Dennison</div>
+      <div class="timeline-desc">Leading end-to-end digital traceability transformation for a major apparel retail client — from requirements gathering and pilot rollouts to national expansion. Establishing a Centre of Excellence for scalable deployment and managing a complex multi-vendor, C-suite stakeholder environment.</div>
+      <div class="timeline-tags">
+        <span class="tag">RFID</span><span class="tag">Supply Chain</span><span class="tag">Programme Delivery</span><span class="tag">CoE</span><span class="tag">Omnichannel</span>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-period">Nov 2022 – Sep 2024</div>
+      <div class="timeline-role">Senior Product Manager – CX &amp; Tools</div>
+      <div class="timeline-company">Trinet Zenefits (San Francisco, USA)</div>
+      <div class="timeline-desc">Owned the product roadmap for Customer Experience and Tooling across all Trinet products. Delivered features that generated $2.5M in combined revenue and savings, improved First Call Resolution by 30%, and reduced support volume by 35%. Elevated customer satisfaction to >80% via redesigned grievance workflows.</div>
+      <div class="timeline-tags">
+        <span class="tag">SaaS</span><span class="tag">HRIS</span><span class="tag">CX</span><span class="tag">Product Roadmap</span><span class="tag">Churn Reduction</span><span class="tag">Self-Serve</span>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-period">Dec 2021 – Nov 2022</div>
+      <div class="timeline-role">Product Manager – Omnicommerce &amp; Warehouse Ops</div>
+      <div class="timeline-company">Design Cafe</div>
+      <div class="timeline-desc">Led product development across e-commerce, HR, finance, and warehouse operations. Saved 4 FTE per week through process automation and enabled full remote capability by migrating to cloud and mobile-first platforms.</div>
+      <div class="timeline-tags">
+        <span class="tag">E-commerce</span><span class="tag">WMS</span><span class="tag">Cloud Migration</span><span class="tag">Mobile-First</span>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot" style="border-color: var(--gold);"></div>
+      <div class="timeline-period">Jun 2018 – Nov 2021</div>
+      <div class="timeline-role">IT Leader – Innovation, RFID &amp; Retail Solutions</div>
+      <div class="timeline-company">Decathlon India</div>
+      <div class="timeline-desc">Managed IT strategy and innovation for 95+ stores, leading 20+ engineers and 15+ vendors with an annual budget of ₹55Cr+. Delivered multiple India-first product launches and saved ₹16Cr through cost optimisation. Instrumental in Decathlon winning 'Most Admired International Brand Retailer of the Year 2021'.</div>
+      <div class="timeline-tags">
+        <span class="tag">RFID</span><span class="tag">IoT</span><span class="tag">Innovation Lab</span><span class="tag">POS</span><span class="tag">Retail Tech</span><span class="tag">₹55Cr Budget</span>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-period">Jun 2015 – Jun 2018</div>
+      <div class="timeline-role">Project Manager</div>
+      <div class="timeline-company">IBM</div>
+      <div class="timeline-desc">Delivered enterprise technology projects for global clients. Won the Manager's Choice Award three consecutive years (2016–2018) and inducted into the Hall of Fame for client-first values and initiative.</div>
+      <div class="timeline-tags">
+        <span class="tag">Enterprise Delivery</span><span class="tag">Project Management</span><span class="tag">Stakeholder Management</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT LAUNCHES -->
+<section id="launches">
+  <div class="section-label">Portfolio</div>
+  <h2 class="section-title">Products launched. Firsts achieved. Impact delivered.</h2>
+
+  <!-- ── GROUP 1: RFID Self-Checkout ── -->
+  <div class="product-group">
+    <div class="product-group-header">
+      <span class="product-group-badge badge-first">India First</span>
+      <h3 class="product-group-title">RFID Self-Checkout Billing</h3>
+      <span class="product-group-company">Decathlon India · Jul 2019</span>
+    </div>
+    <div class="product-group-body">
+      <div class="product-desc-col">
+        <p class="product-desc">India's first RFID-enabled self-checkout system deployed in a live retail environment. Customers place their entire trolley into the bay — all items are read simultaneously via RFID, billed in seconds, with no manual scanning. Freed up floor staff, eliminated queues, and set a new standard for retail in India.</p>
+        <div class="product-metrics">
+          <div class="metric-pill"><span class="metric-num">50%</span><span class="metric-desc">reduction in queue wait time</span></div>
+          <div class="metric-pill"><span class="metric-num">35–50%</span><span class="metric-desc">faster billing speed</span></div>
+          <div class="metric-pill"><span class="metric-num">75%</span><span class="metric-desc">fewer cashiers needed at counters</span></div>
+          <div class="metric-pill"><span class="metric-num">5×</span><span class="metric-desc">cheaper than traditional POS</span></div>
+        </div>
+      </div>
+      <div class="video-grid cols-2">
+        <div class="video-thumb" onclick="openLightbox('krCOli7Uj-Q','RFID Self-Checkout — Live Demo')">
+          <img src="https://img.youtube.com/vi/krCOli7Uj-Q/hqdefault.jpg" alt="RFID Self-Checkout Demo">
+          <div class="video-play-btn">
+            <div class="play-circle"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M5 3l9 5-9 5V3z" fill="#1B3A5C"/></svg></div>
+            <span class="video-label">Live Demo</span>
+          </div>
+        </div>
+        <div class="video-thumb" onclick="openLightbox('viXbDDGueqo','RFID Self-Checkout — Extended Demonstration')">
+          <img src="https://img.youtube.com/vi/viXbDDGueqo/hqdefault.jpg" alt="RFID Self-Checkout Extended">
+          <div class="video-play-btn">
+            <div class="play-circle"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M5 3l9 5-9 5V3z" fill="#1B3A5C"/></svg></div>
+            <span class="video-label">Extended Demo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── GROUP 2: Self-Checkout with Cash Vending ── -->
+  <div class="product-group">
+    <div class="product-group-header">
+      <span class="product-group-badge badge-first">India First</span>
+      <h3 class="product-group-title">Self-Checkout with Cash Vending</h3>
+      <span class="product-group-company">Decathlon India · Mar 2020</span>
+    </div>
+    <div class="product-group-body">
+      <div class="product-desc-col">
+        <p class="product-desc">Extended self-checkout to support fully unattended cash transactions — India's first in retail. The unit accepts notes and coins, makes change, detects counterfeits, and handles zero billing discrepancies. Enabled 12-hour unattended operation and opened self-checkout to the 30% of customers who prefer cash.</p>
+        <div class="product-metrics">
+          <div class="metric-pill"><span class="metric-num">30%</span><span class="metric-desc">cash customers now use self-checkout</span></div>
+          <div class="metric-pill"><span class="metric-num">Zero</span><span class="metric-desc">billing discrepancies on cash</span></div>
+          <div class="metric-pill"><span class="metric-num">12 hrs</span><span class="metric-desc">unattended operation per day</span></div>
+        </div>
+      </div>
+      <div class="video-grid cols-1">
+        <div class="video-coming-soon">
+          <span>🎬</span>
+          <span>Video coming soon</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── GROUP 3: Smart Trolley ── -->
+  <div class="product-group">
+    <div class="product-group-header">
+      <span class="product-group-badge badge-first">India First</span>
+      <h3 class="product-group-title">Smart Trolley Integrated with POS</h3>
+      <span class="product-group-company">Decathlon India · Aug 2019</span>
+    </div>
+    <div class="product-group-body">
+      <div class="product-desc-col">
+        <p class="product-desc">India's first shopping trolley with live POS integration. RFID readers embedded in the trolley track items as they're added, communicating in real time with the billing system. V1 launched with UPI wallet payments; V2 added full card payment support after strong user adoption and market feedback.</p>
+        <div class="product-metrics">
+          <div class="metric-pill"><span class="metric-num">40%</span><span class="metric-desc">increase in avg basket value</span></div>
+          <div class="metric-pill"><span class="metric-num">V1 → V2</span><span class="metric-desc">UPI then card payments added</span></div>
+        </div>
+      </div>
+      <div class="video-grid cols-2">
+        <div class="video-thumb" onclick="openLightbox('_8RF2d41mDo','Smart Trolley — V1 Prototype (UPI Payments)')">
+          <img src="https://img.youtube.com/vi/_8RF2d41mDo/hqdefault.jpg" alt="Smart Trolley V1">
+          <div class="video-play-btn">
+            <div class="play-circle"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M5 3l9 5-9 5V3z" fill="#1B3A5C"/></svg></div>
+            <span class="video-label">V1 — UPI Prototype</span>
+          </div>
+        </div>
+        <div class="video-thumb" onclick="openLightbox('LYbBl-Xykio','Smart Trolley — V2 with Card Payments')">
+          <img src="https://img.youtube.com/vi/LYbBl-Xykio/hqdefault.jpg" alt="Smart Trolley V2">
+          <div class="video-play-btn">
+            <div class="play-circle"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M5 3l9 5-9 5V3z" fill="#1B3A5C"/></svg></div>
+            <span class="video-label">V2 — Card Payments</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── GROUP 4: Scan & Go + Security ── -->
+  <div class="product-group">
+    <div class="product-group-header">
+      <span class="product-group-badge badge-impact">5M+ Users</span>
+      <h3 class="product-group-title">Scan &amp; Go App + IoT Security Ecosystem</h3>
+      <span class="product-group-company">Decathlon India · 2019</span>
+    </div>
+    <div class="product-group-body wide">
+      <p class="product-desc" style="margin-bottom:20px;">Customers scan products using their phone and walk out — no queues, no cashier. Integrated with a full IoT security layer: smart anti-theft gates detect any unbilled articles, and an intelligent indicator tells store security exactly which item triggered the alert. Reached 5 million users and became a flagship digital initiative for Decathlon India.</p>
+      <div class="product-metrics" style="margin-bottom:24px;">
+        <div class="metric-pill"><span class="metric-num">5M+</span><span class="metric-desc">active app users</span></div>
+        <div class="metric-pill"><span class="metric-num">Zero</span><span class="metric-desc">-contact checkout</span></div>
+        <div class="metric-pill"><span class="metric-num">IoT</span><span class="metric-desc">smart anti-theft gates</span></div>
+      </div>
+      <div class="video-grid cols-3">
+        <div class="video-thumb" onclick="openLightbox('Gk1J8GYf2Rw','Scan & Go — App Overview')">
+          <img src="https://img.youtube.com/vi/Gk1J8GYf2Rw/hqdefault.jpg" alt="Scan & Go App">
+          <div class="video-play-btn">
+            <div class="play-circle"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M5 3l9 5-9 5V3z" fill="#1B3A5C"/></svg></div>
+            <span class="video-label">App Overview</span>
+          </div>
+        </div>
+        <div class="video-thumb" onclick="openLightbox('W9r9Bznv4tw','IoT Security Gates — Smart Checkout & Anti-Theft')">
+          <img src="https://img.youtube.com/vi/W9r9Bznv4tw/hqdefault.jpg" alt="IoT Security Gates">
+          <div class="video-play-btn">
+            <div class="play-circle"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M5 3l9 5-9 5V3z" fill="#1B3A5C"/></svg></div>
+            <span class="video-label">IoT Security Gates</span>
+          </div>
+        </div>
+        <div class="video-thumb" onclick="openLightbox('nqViexOvZTY','Smart Article Indicator — Unbilled Item Detection')">
+          <img src="https://img.youtube.com/vi/nqViexOvZTY/hqdefault.jpg" alt="Smart Article Indicator">
+          <div class="video-play-btn">
+            <div class="play-circle"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M5 3l9 5-9 5V3z" fill="#1B3A5C"/></svg></div>
+            <span class="video-label">Smart Article Indicator</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── GROUP 5: CX Transformation ── -->
+  <div class="product-group">
+    <div class="product-group-header">
+      <span class="product-group-badge badge-impact">$2.5M Impact</span>
+      <h3 class="product-group-title">CX Platform Transformation</h3>
+      <span class="product-group-company">Trinet Zenefits · 2022–2024</span>
+    </div>
+    <div class="product-group-body wide">
+      <p class="product-desc">End-to-end overhaul of customer experience tooling across a US HR SaaS platform. Rebuilt support flows, launched self-serve features, and redesigned escalation workflows — measurably improving every key CX metric and contributing $2.5M in combined revenue and cost savings.</p>
+      <div class="product-metrics" style="margin-top:16px;">
+        <div class="metric-pill"><span class="metric-num">$2.5M</span><span class="metric-desc">revenue &amp; cost impact</span></div>
+        <div class="metric-pill"><span class="metric-num">30%</span><span class="metric-desc">better First Call Resolution</span></div>
+        <div class="metric-pill"><span class="metric-num">35%</span><span class="metric-desc">fewer support tickets</span></div>
+        <div class="metric-pill"><span class="metric-num">&gt;80%</span><span class="metric-desc">customer satisfaction</span></div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightboxOnBg(event)">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" onclick="closeLightbox()">✕ &nbsp;Close</button>
+    <iframe id="lightbox-iframe" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+    <div class="lightbox-title" id="lightbox-title"></div>
+  </div>
+</div>
+
+<!-- EXPERTISE -->
+<section id="expertise">
+  <div class="section-label">Capabilities</div>
+  <h2 class="section-title">What I bring to any organisation.</h2>
+
+  <div class="expertise-grid">
+    <div class="expertise-card">
+      <span class="expertise-icon">🗺</span>
+      <div class="expertise-name">Product Strategy & Roadmapping</div>
+      <div class="expertise-desc">From 0-to-1 innovation to optimising mature platforms — translating business goals into prioritised roadmaps that engineering, design, and leadership can execute against.</div>
+    </div>
+    <div class="expertise-card">
+      <span class="expertise-icon">📦</span>
+      <div class="expertise-name">Programme & Portfolio Delivery</div>
+      <div class="expertise-desc">Managing complex, multi-vendor, multi-team programmes from discovery through national rollout — with structured governance, CoE frameworks, and stakeholder alignment.</div>
+    </div>
+    <div class="expertise-card">
+      <span class="expertise-icon">💰</span>
+      <div class="expertise-name">P&L & Budget Management</div>
+      <div class="expertise-desc">Accountable ownership of ₹55Cr+ budgets — driving cost optimisation, vendor negotiations, and investment allocation to deliver maximum business value.</div>
+    </div>
+    <div class="expertise-card">
+      <span class="expertise-icon">🔄</span>
+      <div class="expertise-name">Digital Transformation</div>
+      <div class="expertise-desc">End-to-end transformation — cloud migration, process automation, mobile-first deployments, and innovation lab establishment — across retail, SaaS, and supply chain.</div>
+    </div>
+    <div class="expertise-card">
+      <span class="expertise-icon">👥</span>
+      <div class="expertise-name">Customer Experience (CX)</div>
+      <div class="expertise-desc">Deep experience building self-serve products, redesigning support flows, and using data analytics to reduce churn and improve satisfaction across B2C and B2B contexts.</div>
+    </div>
+    <div class="expertise-card">
+      <span class="expertise-icon">🤝</span>
+      <div class="expertise-name">Stakeholder & Vendor Management</div>
+      <div class="expertise-desc">Operating credibly at C-suite level while managing 15+ vendor relationships — negotiating contracts, driving accountability, and aligning diverse stakeholders to shared outcomes.</div>
+    </div>
+    <div class="expertise-card">
+      <span class="expertise-icon">🏪</span>
+      <div class="expertise-name">Retail & E-commerce</div>
+      <div class="expertise-desc">Hands-on experience with POS systems, OMS, WMS, RFID, IoT, and omnichannel retail — from strategy to store-floor deployment at scale across 95+ locations.</div>
+    </div>
+    <div class="expertise-card">
+      <span class="expertise-icon">☁️</span>
+      <div class="expertise-name">SaaS & Enterprise Tech</div>
+      <div class="expertise-desc">Product leadership in HRIS, CRM, LMS, and customer tooling — with strong Agile/Scrum delivery discipline and a track record in US-headquartered global SaaS companies.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CREDENTIALS -->
+<section id="credentials">
+  <div class="section-label">Education &amp; Certifications</div>
+  <h2 class="section-title">Foundations built for the long game.</h2>
+
+  <div class="cred-list">
+    <div class="cred-item">
+      <span class="cred-year">2023–2024</span>
+      <div>
+        <div class="cred-name">Post Graduate Certificate in Product Management</div>
+        <div class="cred-org">Duke University</div>
+      </div>
+    </div>
+    <div class="cred-item">
+      <span class="cred-year">2013–2014</span>
+      <div>
+        <div class="cred-name">Master of Business (Information Technology)</div>
+        <div class="cred-org">RMIT University, Melbourne, Australia</div>
+      </div>
+    </div>
+    <div class="cred-item">
+      <span class="cred-year">2007–2011</span>
+      <div>
+        <div class="cred-name">B.E. Electronics &amp; Communication Engineering</div>
+        <div class="cred-org">New Horizon College of Engineering / VTU, Bangalore</div>
+      </div>
+    </div>
+    <div class="cred-item">
+      <span class="cred-year">PMP®</span>
+      <div>
+        <div class="cred-name">Certified Project Management Professional</div>
+        <div class="cred-org">PMI</div>
+      </div>
+    </div>
+    <div class="cred-item">
+      <span class="cred-year">Cert</span>
+      <div>
+        <div class="cred-name">Certified Six Sigma Green Belt</div>
+        <div class="cred-org">Six Sigma Council</div>
+      </div>
+    </div>
+    <div class="cred-item">
+      <span class="cred-year">Cert</span>
+      <div>
+        <div class="cred-name">ITIL V3 Foundation  ·  Cloud Foundation  ·  Digital Marketing Specialist (Master's)</div>
+        <div class="cred-org">Various Accreditation Bodies</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="section-label">Contact</div>
+  <h2 class="section-title">Open to Director &amp; Senior Manager roles worldwide.</h2>
+  <div class="contact-links">
+    <a class="contact-chip" href="mailto:nikyrulez@gmail.com">✉ nikyrulez@gmail.com</a>
+    <a class="contact-chip" href="tel:+919620652220">📞 +91 96206 52220</a>
+    <a class="contact-chip" href="https://www.linkedin.com/in/nchan1304" target="_blank">🔗 linkedin.com/in/nchan1304</a>
+    <span class="contact-chip">📍 Bangalore, India</span>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Niket Chandrashekar</div>
+  <div class="footer-note">Product &amp; Programme Leadership Portfolio</div>
+</footer>
+
+<script>
+  // ── Lightbox ──
+  function openLightbox(videoId, title) {
+    document.getElementById('lightbox-iframe').src =
+      'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0';
+    document.getElementById('lightbox-title').textContent = title;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.getElementById('lightbox-iframe').src = '';
+    document.body.style.overflow = '';
+  }
+  function closeLightboxOnBg(e) {
+    if (e.target === document.getElementById('lightbox')) closeLightbox();
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+  // ── Intersection Observer for scroll animations ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const siblings = Array.from(entry.target.parentElement.children);
+        const index = siblings.indexOf(entry.target);
+        entry.target.style.transitionDelay = (index % 4) * 80 + 'ms';
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.timeline-item, .product-group, .expertise-card, .cred-item').forEach(el => {
+    observer.observe(el);
+  });
+
+  // Smooth nav highlight
+  const sections = document.querySelectorAll('section[id], div.hero');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id || '';
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current
+        ? 'var(--gold-light)' : '';
+    });
+  });
+</script>
+</body>
+</html>
